@@ -5,7 +5,3 @@
 
 # env configuration
 .env
-nodemon.json
-
-# build
-main.js
