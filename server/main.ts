@@ -1,9 +1,10 @@
-import express, { Express, Request, Response } from "express";
+import express, { Express } from "express";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 const bodyParser = require("body-parser");
+const users = require("./src/users/users.routes");
 
 const app: Express = express();
 const port = process.env.PORT || 8080;
@@ -13,12 +14,7 @@ const hostname = process.env.HOSTNAME?.toString() || "localhost";
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get("/", (req: Request, res: Response) => {
-  res.status(200).send({
-    message: "GET Home route working fine!!!",
-  });
-});
-
+app.use("/users", users);
 app.listen(Number(port), hostname, () => {
-  console.log(`Server running in http://${hostname}:${port}`);
+  console.log(`Server running in http://${hostname}:${port}\n\n`);
 });
